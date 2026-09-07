@@ -10,8 +10,8 @@ function App() {
 		<div className="app">
 			{/* Main header */}
 			<header className="app-header">
-				<h1>MavScript Universe</h1>
-				<p>CODING COMPANIONS • 9-CARD LEGENDARY COLLECTION</p>
+				<h1>CRITICAL MISSFITS</h1>
+				<p>Trading Cards | Series I | 2026</p>
 			</header>
 
 			{/* Map through all cards and render them */}
