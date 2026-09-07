@@ -65,42 +65,6 @@
 	display: block;
 }
 
-.card-base {
-	position: absolute;
-	inset: 0;
-	z-index: 1;
-}
-
-.card-border {
-	position: absolute;
-	inset: 0;
-	z-index: 2;
-	object-fit: contain;
-	pointer-events: none;
-}
-
-/* ==================== HOLOGRAPHIC LIGHT ==================== */
-
-.holo-overlay {
-	position: absolute;
-	inset: 0;
-	pointer-events: none;
-	opacity: 0;
-	background:
-		radial-gradient(
-			circle at var(--mouse-x) var(--mouse-y),
-			rgba(255, 255, 255, 0.28) 0%,
-			rgba(255, 255, 255, 0.12) 12%,
-			transparent 42%
-		);
-	mix-blend-mode: screen;
-	transition: opacity 0.15s ease;
-}
-
-.card-container:hover .holo-overlay {
-	opacity: 1;
-}
-
 /* ==================== FLOATING EFFECT ==================== */
 
 @keyframes float {
