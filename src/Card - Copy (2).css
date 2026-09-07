@@ -40,7 +40,6 @@
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
-
 	backface-visibility: hidden;
 	-webkit-backface-visibility: hidden;
 
@@ -51,19 +50,8 @@
 	transition: box-shadow 0.25s ease;
 }
 
-/* Normal card hover */
-
 .card-container:hover .card-front,
 .card-container:hover .card-back {
-	box-shadow:
-		0 8px 30px rgba(0, 0, 0, 0.7),
-		0 0 20px rgba(255, 0, 0, 1);
-}
-
-/* Zoom card hover */
-
-.zoom-card:hover .card-front,
-.zoom-card:hover .card-back {
 	box-shadow:
 		0 8px 30px rgba(0, 0, 0, 0.7),
 		0 0 20px rgba(255, 0, 0, 1);
@@ -96,9 +84,7 @@
 	position: absolute;
 	inset: 0;
 	z-index: 2;
-
 	object-fit: contain;
-
 	pointer-events: none;
 }
 
@@ -108,7 +94,6 @@
 	position: absolute;
 	inset: 0;
 	z-index: 3;
-
 	pointer-events: none;
 
 	opacity: 0;
@@ -116,30 +101,19 @@
 	background:
 		linear-gradient(
 			var(--foil-angle),
-
 			transparent 22%,
-
 			rgba(70, 0, 0, 0.12) 32%,
-
 			rgba(150, 10, 10, 0.22) 36%,
-
 			rgba(220, 35, 35, 0.38) 41%,
-
 			rgba(255, 90, 90, 0.52) 45%,
-
 			rgba(255, 210, 210, 0.72) 50%,
-
 			rgba(255, 90, 90, 0.52) 55%,
-
 			rgba(220, 35, 35, 0.38) 59%,
-
 			rgba(150, 10, 10, 0.22) 64%,
-
 			transparent 78%
 		);
 
 	background-size: 180% 180%;
-
 	background-position:
 		calc(50% + var(--foil-x))
 		calc(50% + var(--foil-y));
@@ -161,8 +135,7 @@
 		background-position 0.15s ease;
 }
 
-.card-container:hover .foil-overlay,
-.zoom-card:hover .foil-overlay {
+.card-container:hover .foil-overlay {
 	opacity: 1;
 }
 
@@ -172,32 +145,25 @@
 	position: absolute;
 	inset: 0;
 	z-index: 4;
-
 	pointer-events: none;
 
 	background:
 		radial-gradient(
 			ellipse at 50% 40%,
-
 			rgba(255, 255, 255, 0.80) 0%,
-
 			rgba(255, 255, 255, 0.38) 30%,
-
 			rgba(255, 255, 255, 0.10) 55%,
-
 			transparent 80%
 		);
 
 	background-size: 140% 140%;
-
 	background-position:
 		calc(50% + var(--sheen-x))
 		calc(50% + var(--sheen-y));
 
 	mix-blend-mode: soft-light;
 
-	transition:
-		background-position 0.2s ease;
+	transition: background-position 0.2s ease;
 }
 
 /* ==================== FLOATING EFFECT ==================== */
@@ -215,77 +181,6 @@
 
 .card-container:hover {
 	animation: none;
-}
-
-/* ==================== ZOOM MODE ==================== */
-
-.zoom-layer {
-	position: fixed;
-	inset: 0;
-
-	z-index: 100;
-
-	pointer-events: none;
-}
-
-/* ==================== DARK BACKDROP ==================== */
-
-.zoom-backdrop {
-	position: absolute;
-	inset: 0;
-
-	background: rgba(0, 0, 0, 0.75);
-
-	opacity: 1;
-
-	pointer-events: auto;
-
-	transition:
-		opacity 0.5s ease;
-}
-
-.zoom-backdrop.closing {
-	opacity: 0;
-}
-
-/* ==================== ZOOM CARD ==================== */
-
-.zoom-card {
-	position: fixed;
-
-	z-index: 101;
-
-	margin: 0;
-
-	perspective: 1200px;
-
-	cursor: pointer;
-
-	pointer-events: auto;
-
-	/*
-	 * IMPORTANT:
-	 *
-	 * The zoom card itself does NOT use transform for
-	 * positioning or scaling.
-	 *
-	 * left/top/width/height are animated directly so the
-	 * card can smoothly travel between the gallery position
-	 * and the fullscreen position.
-	 */
-
-	transition:
-		left 0.5s ease,
-		top 0.5s ease,
-		width 0.5s ease,
-		height 0.5s ease,
-		opacity 0.5s ease;
-
-	opacity: 1;
-}
-
-.zoom-card.closing {
-	opacity: 0;
 }
 
 /* ==================== RESPONSIVE ==================== */
