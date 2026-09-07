@@ -15,10 +15,15 @@ const Card = ({ data }) => {
 		const card = e.currentTarget;
 		const rect = card.getBoundingClientRect();
 
-		const x = (e.clientX - rect.left) / rect.width;
-		const y = (e.clientY - rect.top) / rect.height;
+		const screenX =
+			((e.clientX - rect.left) / rect.width) * 100;
+		const screenY =
+			((e.clientY - rect.top) / rect.height) * 100;
 
-		const maxTilt = 12;
+		const x = screenX / 100;
+		const y = screenY / 100;
+
+		const maxTilt = 20;
 
 		const rotateY = (x - 0.5) * maxTilt * 2;
 		const rotateX = (0.5 - y) * maxTilt * 2;
@@ -46,9 +51,8 @@ const Card = ({ data }) => {
 					transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
 				}}
 			>
-				<div
-					className={`card-inner ${isFlipped ? "flipped" : ""}`}
-				>
+				<div className={`card-inner ${isFlipped ? "flipped" : ""}`}>
+
 					{/* ==================== FRONT ==================== */}
 
 					<div className="card-front">
@@ -77,6 +81,15 @@ const Card = ({ data }) => {
 								"--foil-angle": `${45 + tilt.y * 2}deg`,
 							}}
 						/>
+
+						{/* Subtle semi-gloss sheen */}
+						<div
+							className="face-sheen"
+							style={{
+								"--sheen-x": `${tilt.y * 3}%`,
+								"--sheen-y": `${-tilt.x * 3}%`,
+							}}
+						/>
 					</div>
 
 					{/* ==================== BACK ==================== */}
@@ -87,7 +100,17 @@ const Card = ({ data }) => {
 							className="card-image"
 							alt={`${data.name} back`}
 						/>
+
+						{/* Subtle semi-gloss sheen */}
+						<div
+							className="face-sheen"
+							style={{
+								"--sheen-x": `${tilt.y * 3}%`,
+								"--sheen-y": `${-tilt.x * 3}%`,
+							}}
+						/>
 					</div>
+
 				</div>
 			</div>
 		</div>

@@ -132,6 +132,34 @@
 	opacity: 1.0;
 }
 
+/* ==================== SUBTLE CARD FACE SHEEN ==================== */
+
+.face-sheen {
+	position: absolute;
+	inset: 0;
+	z-index: 4;
+	pointer-events: none;
+
+	background:
+		radial-gradient(
+			ellipse at 50% 40%,
+			rgba(255, 255, 255, 0.80) 0%,
+			rgba(255, 255, 255, 0.38) 30%,
+			rgba(255, 255, 255, 0.10) 55%,
+			transparent 80%
+		);
+
+	background-size: 140% 140%;
+	background-position:
+		calc(50% + var(--sheen-x))
+		calc(50% + var(--sheen-y));
+
+	mix-blend-mode: soft-light;
+
+	transition: background-position 0.2s ease;
+}
+
+
 /* ==================== FLOATING EFFECT ==================== */
 
 @keyframes float {
