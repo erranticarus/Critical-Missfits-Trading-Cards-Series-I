@@ -194,20 +194,20 @@ const Card = ({ data }) => {
 
 					<div className="card-front">
 						<img
-							src={data.front}
-							className="card-image card-base"
-							alt={`${data.name} front`}
-						/>
+	src={data.front}
+	className="card-image card-base"
+	alt={`${data.name} front`}
+/>
 
-						<img
-							src={data.border}
-							className="card-image card-border"
-							alt=""
-							aria-hidden="true"
-						/>
+<img
+	src={data.border}
+	className="card-image card-border"
+	alt=""
+	aria-hidden="true"
+/>
 
-						<div
-							className="foil-overlay"
+<div
+	className="foil-overlay"
 							style={{
 								"--border-mask":
 									`url(${data.border})`,
