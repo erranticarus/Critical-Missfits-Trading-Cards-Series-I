@@ -1,574 +1,95 @@
-/**
- * ==================== 3D CARD SYSTEM ====================
- *
- * @format
- */
+/** @format */
 
-/* Step 1: The Glass Box (Perspective Container) */
 .card-container {
 	width: 300px;
-	height: 450px;
-	background-color: transparent;
-	perspective: 1000px; /* Creates 3D space */
+	height: 420px;
+	perspective: 1200px;
 	margin: 0 auto;
 	cursor: pointer;
-	animation: float 6s ease-in-out infinite;
+	animation: float 3s ease-in-out infinite;
 }
 
-/* Step 2: The Sandwich (Inner Flipper) */
+.card-tilt {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transform-style: preserve-3d;
+	transition: transform 0.12s ease-out;
+}
+
+/* ==================== CARD FLIP ==================== */
+
 .card-inner {
 	position: relative;
 	width: 100%;
 	height: 100%;
-	text-align: center;
-	transition: transform 0.15s ease-out; /* Fast tilt response */
-	transform-style: preserve-3d; /* Maintains 3D for children */
+	transform-style: preserve-3d;
+	transition: transform 0.9s ease-in-out;
 }
 
-/* Slower transition when flipping */
-.card-container.flipped .card-inner {
-	transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Smooth flip with bounce */
-}
-
-/* ==================== TILT TRACKING GRID ==================== */
-
-/* Invisible 5x5 grid for precise tilt tracking */
-.tilt-canvas {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 300;
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	grid-template-rows: repeat(5, 1fr);
-	pointer-events: none; /* Allow clicks to pass through */
-}
-
-.tilt-zone {
-	pointer-events: auto;
-	transition: none; /* Instant tilt response */
-}
-
-/* Tilt effects - using :has() selector for parent-to-child targeting */
-.card-container:has(.tilt-zone.tilt-1:hover) .card-inner {
-	transform: rotateX(20deg) rotateY(-10deg);
-}
-
-.card-container:has(.tilt-zone.tilt-2:hover) .card-inner {
-	transform: rotateX(20deg) rotateY(-5deg);
-}
-.card-container:has(.tilt-zone.tilt-3:hover) .card-inner {
-	transform: rotateX(20deg) rotateY(0deg);
-}
-
-.card-container:has(.tilt-zone.tilt-4:hover) .card-inner {
-	transform: rotateX(20deg) rotateY(5deg);
-}
-
-.card-container:has(.tilt-zone.tilt-5:hover) .card-inner {
-	transform: rotateX(20deg) rotateY(10deg);
-}
-
-.card-container:has(.tilt-zone.tilt-16:hover) .card-inner {
-	transform: rotateX(-10deg) rotateY(-10deg) !important;
-}
-
-.card-container:has(.tilt-zone.tilt-17:hover) .card-inner {
-	transform: rotateX(-10deg) rotateY(-5deg) !important;
-}
-
-.card-container:has(.tilt-zone.tilt-18:hover) .card-inner {
-	transform: rotateX(-10deg) rotateY(0deg) !important;
-}
-
-.card-container:has(.tilt-zone.tilt-19:hover) .card-inner {
-	transform: rotateX(-10deg) rotateY(5deg) !important;
-}
-
-.card-container:has(.tilt-zone.tilt-20:hover) .card-inner {
-	transform: rotateX(-10deg) rotateY(10deg) !important;
-}
-
-.card-container:has(.tilt-zone.tilt-21:hover) .card-inner {
-	transform: rotateX(-20deg) rotateY(-10deg) !important;
-}
-
-.card-container:has(.tilt-zone.tilt-22:hover) .card-inner {
-	transform: rotateX(-20deg) rotateY(-5deg) !important;
-}
-
-.card-container:has(.tilt-zone.tilt-23:hover) .card-inner {
-	transform: rotateX(-20deg) rotateY(0deg) !important;
-}
-
-.card-container:has(.tilt-zone.tilt-24:hover) .card-inner {
-	transform: rotateX(-20deg) rotateY(5deg) !important;
-}
-
-.card-container:has(.tilt-zone.tilt-25:hover) .card-inner {
-	transform: rotateX(-20deg) rotateY(10deg) !important;
-}
-
-.card-container:has(.tilt-zone.tilt-9:hover) .card-inner {
-	transform: rotateX(10deg) rotateY(5deg);
-}
-
-.card-container:has(.tilt-zone.tilt-10:hover) .card-inner {
-	transform: rotateX(10deg) rotateY(10deg);
-}
-
-.card-container:has(.tilt-zone.tilt-11:hover) .card-inner {
-	transform: rotateX(0deg) rotateY(-10deg);
-}
-
-.card-container:has(.tilt-zone.tilt-12:hover) .card-inner {
-	transform: rotateX(0deg) rotateY(-5deg);
-}
-
-.card-container:has(.tilt-zone.tilt-13:hover) .card-inner {
-	transform: rotateX(0deg) rotateY(0deg);
-}
-
-.card-container:has(.tilt-zone.tilt-14:hover) .card-inner {
-	transform: rotateX(0deg) rotateY(5deg);
-}
-
-.card-container:has(.tilt-zone.tilt-15:hover) .card-inner {
-	transform: rotateX(0deg) rotateY(10deg);
-}
-
-.card-container:has(.tilt-zone.tilt-16:hover) .card-inner {
-	transform: rotateX(-10deg) rotateY(-10deg);
-}
-
-.card-container:has(.tilt-zone.tilt-17:hover) .card-inner {
-	transform: rotateX(-10deg) rotateY(-5deg);
-}
-
-.card-container:has(.tilt-zone.tilt-18:hover) .card-inner {
-	transform: rotateX(-10deg) rotateY(0deg);
-}
-
-.card-container:has(.tilt-zone.tilt-19:hover) .card-inner {
-	transform: rotateX(-10deg) rotateY(5deg);
-}
-
-.card-container:has(.tilt-zone.tilt-20:hover) .card-inner {
-	transform: rotateX(-10deg) rotateY(10deg);
-}
-
-.card-container:has(.tilt-zone.tilt-21:hover) .card-inner {
-	transform: rotateX(-20deg) rotateY(-10deg);
-}
-
-.card-container:has(.tilt-zone.tilt-22:hover) .card-inner {
-	transform: rotateX(-20deg) rotateY(-5deg);
-}
-
-.card-container:has(.tilt-zone.tilt-23:hover) .card-inner {
-	transform: rotateX(-20deg) rotateY(0deg);
-}
-
-.card-container:has(.tilt-zone.tilt-24:hover) .card-inner {
-	transform: rotateX(-20deg) rotateY(5deg);
-}
-
-.card-container:has(.tilt-zone.tilt-25:hover) .card-inner {
-	transform: rotateX(-20deg) rotateY(10deg);
-}
-
-/* Reset tilt when not hovering any zone - only when NOT flipped */
-.card-container:not(.flipped) .card-inner {
-	transform: rotateX(0deg) rotateY(0deg);
-}
-
-/* ==================== VARIED FLIP DIRECTIONS (CLICK TO FLIP) ==================== */
-
-/* Standard Flip (Y-Axis) - Classic door flip */
-.card-container.flip-standard.flipped .card-inner {
-	transform: rotateY(180deg);
-}
-
-.card-container.flip-standard .card-back {
-	transform: rotateY(180deg);
-}
-
-/* Vertical Flip (X-Axis) - Heavy garage door flip */
-.card-container.flip-vertical.flipped .card-inner {
-	transform: rotateX(180deg);
-}
-
-.card-container.flip-vertical .card-back {
-	transform: rotateX(180deg);
-}
-
-/* Diagonal Flip - Disorienting spin */
-.card-container.flip-diagonal.flipped .card-inner {
-	transform: rotate3d(1, 1, 0, 180deg);
-}
-
-.card-container.flip-diagonal .card-back {
-	transform: rotate3d(1, 1, 0, 180deg);
-}
-
-/* Inverted Diagonal Flip - Chaotic flip */
-.card-container.flip-invert.flipped .card-inner {
-	transform: rotate3d(-1, 1, 0, 180deg);
-}
-
-.card-container.flip-invert .card-back {
-	transform: rotate3d(-1, 1, 0, 180deg);
-}
-
-/* Disable tilt when flipped */
-.card-container.flipped .tilt-zone {
-	pointer-events: none;
+.card-inner.flipped {
+	transform: rotateY(-180deg) rotateZ(-90deg);
 }
 
 /* ==================== CARD FACES ==================== */
 
-/* Front & Back Faces */
 .card-front,
 .card-back {
 	position: absolute;
+	inset: 0;
 	width: 100%;
 	height: 100%;
-	-webkit-backface-visibility: hidden; /* Hides back when facing away */
-	backface-visibility: hidden;
-	border-radius: 15px;
 	overflow: hidden;
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+
 	box-shadow:
 		0 8px 30px rgba(0, 0, 0, 0.7),
 		0 0 20px rgba(0, 212, 255, 0.2);
 }
 
-/* Back Face: Base styles */
+.card-front {
+	transform: rotateY(0deg);
+}
+
 .card-back {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	transform: rotateY(180deg);
 }
 
-/* ==================== LAYERING SYSTEM ==================== */
+/* ==================== CARD ARTWORK ==================== */
 
-/* Layer 1: Background (Gradient replaces raster texture) */
-.layer-bg {
-	position: absolute;
-	top: 0;
-	left: 0;
+.card-image {
 	width: 100%;
 	height: 100%;
-	z-index: 1;
-}
-
-/* Layer 2: Character Art (RASTER - PNG files) */
-.layer-art {
-	position: absolute;
-	top: 50px;
-	left: 10%;
-	width: 80%;
-	height: 70%;
 	object-fit: contain;
-	z-index: 3;
-	filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+	display: block;
 }
 
-/* Layer 3: Holographic Foil Overlay (sits between art and frame) */
-.holo-overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 3;
-	opacity: 0.08; /* Subtle base intensity */
-	pointer-events: none;
-	mix-blend-mode: color-dodge; /* Makes blacks stay black, highlights pop */
-	background:
-		radial-gradient(
-			circle at 50% 50%,
-			rgba(255, 255, 255, 0.3) 0%,
-			rgba(0, 255, 255, 0.4) 15%,
-			rgba(255, 0, 255, 0.4) 30%,
-			transparent 60%
-		),
-		linear-gradient(
-			115deg,
-			transparent 10%,
-			rgba(255, 255, 255, 0.5) 20%,
-			rgba(0, 255, 255, 0.6) 30%,
-			rgba(255, 0, 255, 0.6) 40%,
-			rgba(255, 255, 0, 0.5) 50%,
-			rgba(255, 100, 255, 0.6) 60%,
-			rgba(100, 255, 255, 0.6) 70%,
-			rgba(255, 255, 255, 0.5) 80%,
-			transparent 90%
-		);
-	background-size:
-		200% 200%,
-		400% 400%; /* Radial spot + sweep gradient */
-	background-position:
-		50% 50%,
-		0% 0%; /* Center radial, start linear */
-	transition:
-		opacity 0.2s ease,
-		background-position 0.1s ease;
-	animation: holo-shine 4s infinite linear; /* Slow base animation */
-}
-
-/* More intense on hover */
-.card-container:hover .holo-overlay {
-	opacity: 0.3; /* More visible on hover */
-	animation: holo-shine 2s infinite linear; /* Faster shimmer on hover */
-}
-
-/* Rainbow shine animation - diagonal sweep (only affects second gradient) */
-@keyframes holo-shine {
-	0% {
-		background-position:
-			50% 50%,
-			0% 0%;
-	}
-	100% {
-		background-position:
-			50% 50%,
-			200% 200%;
-	} /* Keep radial centered, move linear */
-}
-
-/* Layer 3: SVG Frame (VECTOR - Scalable borders) */
-.layer-frame {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 4;
-	pointer-events: none; /* Allows clicks to pass through */
-}
-
-/* ==================== FRONT CARD TEXT ==================== */
-.card-title {
-	position: absolute;
-	bottom: 50px;
-	width: 100%;
-	z-index: 4;
-	padding: 0 20px;
-}
-
-.card-title h2 {
-	font-size: 1.5rem;
-	text-shadow:
-		2px 2px 8px rgba(0, 0, 0, 0.9),
-		0 0 10px rgba(255, 255, 255, 0.3);
-	margin-bottom: 5px;
-	letter-spacing: 1px;
-}
-
-.rarity {
-	display: inline-block;
-	background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);
-	padding: 4px 12px;
-	border-radius: 5px;
-	font-size: 0.7rem;
-	font-weight: bold;
-	letter-spacing: 2px;
-	color: #000;
-	box-shadow: 0 2px 10px rgba(255, 215, 0, 0.5);
-}
-
-/* ==================== BACK CARD CONTENT ==================== */
-.card-content {
-	position: relative;
-	z-index: 5;
-	padding: 40px 25px;
-	text-align: left;
-	width: 100%;
-}
-
-.card-content h3 {
-	font-size: 1.8rem;
-	margin-bottom: 1.5rem;
-	text-align: center;
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
-}
-
-.stats-list {
-	list-style: none;
-	margin-bottom: 2rem;
-	background: rgba(0, 0, 0, 0.3);
-	padding: 15px;
-	border-radius: 10px;
-	border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.stats-list li {
-	display: flex;
-	justify-content: space-between;
-	padding: 8px 0;
-	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-	font-size: 0.95rem;
-}
-
-.stats-list li:last-child {
-	border-bottom: none;
-}
-
-.stat-key {
-	font-weight: bold;
-	text-transform: uppercase;
-	font-size: 0.85rem;
-	letter-spacing: 1px;
-}
-
-.stat-value {
-	color: #fff;
-	font-weight: normal;
-}
-
-.lore {
-	font-style: italic;
-	color: #ccc;
-	line-height: 1.6;
-	font-size: 0.9rem;
-	text-align: center;
-	padding: 15px;
-	background: rgba(0, 0, 0, 0.3);
-	border-radius: 10px;
-	border-left: 3px solid rgba(255, 255, 255, 0.3);
-}
-
-/* ==================== ANIMATION ENHANCEMENTS ==================== */
+/* ==================== FLOATING EFFECT ==================== */
 
 @keyframes float {
 	0%,
 	100% {
-		transform: translateY(0px);
+		transform: translateY(0);
 	}
+
 	50% {
 		transform: translateY(-10px);
 	}
 }
 
-.card-container:nth-child(2) {
-	animation-delay: 0.7s;
-}
-
-.card-container:nth-child(3) {
-	animation-delay: 1.4s;
-}
-
-.card-container:nth-child(4) {
-	animation-delay: 2.1s;
-}
-
-.card-container:nth-child(5) {
-	animation-delay: 2.8s;
-}
-
-.card-container:nth-child(6) {
-	animation-delay: 3.5s;
-}
-
-.card-container:nth-child(7) {
-	animation-delay: 4.2s;
-}
-
-.card-container:nth-child(8) {
-	animation-delay: 4.9s;
-}
-
-.card-container:nth-child(9) {
-	animation-delay: 5.6s;
-}
-
-/* Glow effect on hover */
-.card-container:hover {
-	animation: none; /* Stop floating on hover */
-}
-
-.card-container:hover .card-front {
-	box-shadow:
-		0 8px 40px rgba(0, 212, 255, 0.6),
-		0 0 30px rgba(187, 134, 252, 0.4);
-}
-
-/* ==================== RESPONSIVE DESIGN ==================== */
+/* ==================== RESPONSIVE ==================== */
 
 @media (max-width: 768px) {
 	.card-container {
 		width: 280px;
-		height: 420px;
-	}
-
-	.card-content {
-		padding: 30px 20px;
-	}
-
-	.card-content h3 {
-		font-size: 1.5rem;
-		margin-bottom: 1rem;
-	}
-
-	.stats-list {
-		padding: 12px;
-		margin-bottom: 1.5rem;
-	}
-
-	.stats-list li {
-		font-size: 0.85rem;
-		padding: 6px 0;
-	}
-
-	.stat-key {
-		font-size: 0.75rem;
-	}
-
-	.lore {
-		font-size: 0.8rem;
-		padding: 12px;
-		line-height: 1.5;
+		height: 392px;
 	}
 }
 
 @media (max-width: 480px) {
 	.card-container {
 		width: 240px;
-		height: 360px;
-	}
-
-	.card-content {
-		padding: 20px 15px;
-	}
-
-	.card-content h3 {
-		font-size: 1.2rem;
-		margin-bottom: 0.8rem;
-		letter-spacing: 1px;
-	}
-
-	.stats-list {
-		padding: 10px;
-		margin-bottom: 1rem;
-	}
-
-	.stats-list li {
-		font-size: 0.75rem;
-		padding: 5px 0;
-	}
-
-	.stat-key {
-		font-size: 0.7rem;
-		letter-spacing: 0.5px;
-	}
-
-	.lore {
-		font-size: 0.7rem;
-		padding: 10px;
-		line-height: 1.4;
+		height: 336px;
 	}
 }
