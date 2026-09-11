@@ -6,20 +6,23 @@ import cardsData from "./data";
 import "./App.css";
 
 function App() {
-        return (
-                <div className="app">
-                        <header className="app-header">
-                                <h1>CRITICAL MISSFITS</h1>
-                                <p>TRADING CARD COLLECTION • SERIES I • 2026</p>
-                        </header>
+	return (
+		<div className="app">
+			<header className="app-header">
+				<img
+					src="./assets/banner.png"
+					className="app-logo"
+					alt="Critical Missfits Trading Cards"
+				/>
+			</header>
 
-                        <main className="app-container">
-                                {cardsData.map((card) => (
-                                        <Card key={card.id} data={card} />
-                                ))}
-                        </main>
-                </div>
-        );
+			<main className="app-container">
+				{cardsData.map((card) => (
+					<Card key={card.id} data={card} />
+				))}
+			</main>
+		</div>
+	);
 }
 
 export default App;
