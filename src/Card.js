@@ -71,12 +71,6 @@ const Card = ({ data }) => {
 
 		const rect = e.currentTarget.getBoundingClientRect();
 
-		/*
-		 * Calculate the largest card that fits inside
-		 * 90% of the viewport while respecting the native
-		 * 1500 × 2100 artwork resolution.
-		 */
-
 		const maxWidth = Math.min(
 			window.innerWidth * 0.9,
 			1500,
@@ -103,10 +97,6 @@ const Card = ({ data }) => {
 			targetHeight: maxHeight,
 		});
 
-		/*
-		 * Start with the exact position/size of the original
-		 * card, then expand on the next animation frame.
-		 */
 		setIsZoomed(true);
 
 		requestAnimationFrame(() => {
@@ -128,11 +118,6 @@ const Card = ({ data }) => {
 	/* ==================== ZOOM TRANSITION END ==================== */
 
 	const handleZoomTransitionEnd = (e) => {
-		/*
-		 * Width is one of the properties transitioning during
-		 * the zoom. We only need one transition-end event to
-		 * remove the overlay.
-		 */
 		if (
 			isClosing &&
 			e.propertyName === "width"
@@ -193,21 +178,26 @@ const Card = ({ data }) => {
 					{/* ==================== FRONT ==================== */}
 
 					<div className="card-front">
+
 						<img
-	src={data.front}
-	className="card-image card-base"
-	alt={`${data.name} front`}
-/>
+							src={data.front}
+							className="card-image card-base"
+							alt={`${data.name} front`}
+						/>
 
-<img
-	src={data.border}
-	className="card-image card-border"
-	alt=""
-	aria-hidden="true"
-/>
+						{/* Front border */}
 
-<div
-	className="foil-overlay"
+						<img
+							src={data.border}
+							className="card-image card-border"
+							alt=""
+							aria-hidden="true"
+						/>
+
+						{/* Front foil */}
+
+						<div
+							className="foil-overlay"
 							style={{
 								"--border-mask":
 									`url(${data.border})`,
@@ -223,6 +213,8 @@ const Card = ({ data }) => {
 							}}
 						/>
 
+						{/* Front sheen */}
+
 						<div
 							className="face-sheen"
 							style={{
@@ -233,16 +225,48 @@ const Card = ({ data }) => {
 									`${-currentTilt.x * 3}%`,
 							}}
 						/>
+
 					</div>
 
 					{/* ==================== BACK ==================== */}
 
 					<div className="card-back">
+
 						<img
 							src={data.back}
-							className="card-image"
+							className="card-image card-base"
 							alt={`${data.name} back`}
 						/>
+
+						{/* Back border with CSS shadow */}
+
+						<img
+							src={data.borderBack}
+							className="card-image card-border card-border-back"
+							alt=""
+							aria-hidden="true"
+						/>
+
+						{/* Back foil */}
+
+						<div
+							className="foil-overlay"
+							style={{
+								"--border-mask":
+									`url(${data.borderBack})`,
+
+								"--foil-x":
+									`${currentTilt.y * 3}%`,
+
+								"--foil-y":
+									`${-currentTilt.x * 3}%`,
+
+								"--foil-angle":
+									`${45 + currentTilt.y * 2}deg`,
+							}}
+						/>
+
+						{/* Back sheen */}
 
 						<div
 							className="face-sheen"
@@ -254,6 +278,7 @@ const Card = ({ data }) => {
 									`${-currentTilt.x * 3}%`,
 							}}
 						/>
+
 					</div>
 
 				</div>

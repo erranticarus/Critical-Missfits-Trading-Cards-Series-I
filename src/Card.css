@@ -92,15 +92,21 @@
 	z-index: 1;
 }
 
+/* ==================== BORDER ==================== */
+
 .card-border {
 	position: absolute;
 	inset: 0;
-	z-index: 3;
+	z-index: 2;
 
 	object-fit: contain;
 
 	pointer-events: none;
+}
 
+/* ==================== BACK BORDER SHADOW ==================== */
+
+.card-border-back {
 	filter:
 		drop-shadow(0 3px 3px rgba(0, 0, 0, 1))
 		drop-shadow(0 6px 6px rgba(0, 0, 0, 1))
@@ -113,7 +119,7 @@
 .foil-overlay {
 	position: absolute;
 	inset: 0;
-	z-index: 3;
+	z-index: 4;
 
 	pointer-events: none;
 
@@ -177,7 +183,7 @@
 .face-sheen {
 	position: absolute;
 	inset: 0;
-	z-index: 4;
+	z-index: 5;
 
 	pointer-events: none;
 
@@ -268,17 +274,6 @@
 	cursor: pointer;
 
 	pointer-events: auto;
-
-	/*
-	 * IMPORTANT:
-	 *
-	 * The zoom card itself does NOT use transform for
-	 * positioning or scaling.
-	 *
-	 * left/top/width/height are animated directly so the
-	 * card can smoothly travel between the gallery position
-	 * and the fullscreen position.
-	 */
 
 	transition:
 		left 0.5s ease,
