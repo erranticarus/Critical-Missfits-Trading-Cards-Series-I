@@ -31,9 +31,9 @@ body {
 	margin-bottom: 3rem;
 }
 
-/* ==================== BANNER ==================== */
+/* ==================== BANNERS ==================== */
 
-.banner-container {
+.gallery-banner {
 	position: relative;
 
 	width: min(1200px, 90vw);
@@ -41,7 +41,7 @@ body {
 	margin: 0 auto;
 }
 
-.app-logo {
+.gallery-banner-image {
 	width: 100%;
 	height: auto;
 
@@ -53,26 +53,26 @@ body {
 
 /* ==================== BANNER METALLIC SHINE ==================== */
 
-.banner-shine {
+.gallery-banner-shine {
 	position: absolute;
 
 	inset: 0;
 
 	pointer-events: none;
 
-background:
-	linear-gradient(
-		105deg,
-		transparent 0%,
-		transparent 45%,
-		rgba(255, 255, 255, 0.10) 47%,
-		rgba(255, 255, 255, 0.65) 49%,
-		rgba(255, 255, 255, 1) 50%,
-		rgba(255, 255, 255, 0.65) 51%,
-		rgba(255, 255, 255, 0.10) 53%,
-		transparent 55%,
-		transparent 100%
-	);
+	background:
+		linear-gradient(
+			105deg,
+			transparent 0%,
+			transparent 45%,
+			rgba(255, 255, 255, 0.10) 47%,
+			rgba(255, 255, 255, 0.65) 49%,
+			rgba(255, 255, 255, 1) 50%,
+			rgba(255, 255, 255, 0.65) 51%,
+			rgba(255, 255, 255, 0.10) 53%,
+			transparent 55%,
+			transparent 100%
+		);
 
 	background-size: 250% 100%;
 
@@ -80,8 +80,8 @@ background:
 
 	mix-blend-mode: screen;
 
-	-webkit-mask-image: url("./assets/banner.png");
-	mask-image: url("./assets/banner.png");
+	-webkit-mask-image: var(--banner-mask);
+	mask-image: var(--banner-mask);
 
 	-webkit-mask-size: 100% 100%;
 	mask-size: 100% 100%;
@@ -130,6 +130,22 @@ background:
 	max-width: 1100px;
 }
 
+/* ==================== GALLERY SECTIONS ==================== */
+
+.gallery-section {
+	width: 100%;
+}
+
+.section-zero {
+	margin-top: 0;
+}
+
+.section-1,
+.section-2,
+.section-3 {
+	margin-top: 5rem;
+}
+
 /* ==================== CARD GRID ==================== */
 
 .app-container {
@@ -139,7 +155,7 @@ background:
 
 	justify-content: center;
 
-	gap: 3rem;
+	gap: 9rem;
 
 	max-width: 1400px;
 
@@ -148,10 +164,12 @@ background:
 	padding: 2rem;
 }
 
-/* ==================== FIRST CARD ==================== */
+/* ==================== CARD 000 ==================== */
 
-.app-container > :first-child {
-	grid-column: 2;
+.section-zero .app-container > :first-child {
+	grid-column: 1 / 4;
+
+	justify-self: center;
 }
 
 /* ==================== TABLET ==================== */
@@ -161,8 +179,9 @@ background:
 		grid-template-columns: repeat(2, 300px);
 	}
 
-	.app-container > :first-child {
+	.section-zero .app-container > :first-child {
 		grid-column: 1 / 3;
+
 		justify-self: center;
 	}
 }
@@ -178,11 +197,11 @@ background:
 		padding: 2rem 1rem;
 	}
 
-	.app-container > :first-child {
+	.section-zero .app-container > :first-child {
 		grid-column: 1;
 	}
 
-	.card-instructions {
+	.app-header .card-instructions {
 		font-size: 0.85rem;
 
 		letter-spacing: 0.5px;
@@ -194,11 +213,11 @@ background:
 /* ==================== SMALL MOBILE ==================== */
 
 @media (max-width: 480px) {
-	.app-logo {
-		max-width: 100%;
+	.gallery-banner {
+		width: 90vw;
 	}
 
-	.card-instructions {
+	.app-header .card-instructions {
 		font-size: 0.8rem;
 	}
 }
