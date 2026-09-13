@@ -37,6 +37,34 @@ const cardsData = [
 		border: "./assets/003bdr.png",
 		borderBack: "./assets/003b-bdr.png",
 	},
+{
+    id: 6,
+    name: "Card 006",
+    section: 1,
+    front: "./assets/006.png",
+    back: "./assets/006b.png",
+    border: "./assets/006bdr.png",
+    borderBack: "./assets/006b-bdr.png",
+  },
+  {
+    id: 11,
+    name: "Card 011",
+    section: 1,
+    front: "./assets/011.png",
+    back: "./assets/011b.png",
+    border: "./assets/011bdr.png",
+    borderBack: "./assets/011b-bdr.png",
+  },
+  {
+    id: 13,
+    name: "Card 013",
+    section: 1,
+    front: "./assets/013.png",
+    back: "./assets/013b.png",
+    border: "./assets/013bdr.png",
+    borderBack: "./assets/013b-bdr.png",
+  },
+
 ];
 
 export default cardsData;
