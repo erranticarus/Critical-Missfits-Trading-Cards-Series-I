@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import "./Card.css";
 
 const Card = ({ data }) => {
+	const floatDelay = -((data.id * 1.17) % 3);
+
 	const [isFlipped, setIsFlipped] = useState(false);
 
 	const [isZoomed, setIsZoomed] = useState(false);
@@ -314,13 +316,16 @@ const Card = ({ data }) => {
 		<>
 			{/* ==================== ORIGINAL CARD ==================== */}
 
-			<div
-				className="card-container"
-				onMouseMove={handleMouseMove}
-				onMouseLeave={handleMouseLeave}
-				onClick={handleClick}
-				onDoubleClick={handleDoubleClick}
-			>
+<div
+	className="card-container"
+	style={{
+		"--float-delay": `${floatDelay}s`,
+	}}
+	onMouseMove={handleMouseMove}
+	onMouseLeave={handleMouseLeave}
+	onClick={handleClick}
+	onDoubleClick={handleDoubleClick}
+>
 				{renderCard(tilt)}
 			</div>
 

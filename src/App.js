@@ -234,9 +234,9 @@ function App() {
       </section>
 
       {sections.map((section) => {
-        const sectionCards = cardsData.filter(
-          (card) => card.section === section
-        );
+        const sectionCards = cardsData
+  .filter((card) => card.section === section)
+  .sort((a, b) => a.id - b.id);
 
         return (
           <section

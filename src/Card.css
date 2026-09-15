@@ -6,7 +6,13 @@
 	perspective: 1200px;
 	margin: 0 auto;
 	cursor: pointer;
-	animation: float 3s ease-in-out infinite;
+
+animation:
+  float
+  3s
+  ease-in-out
+  var(--float-delay)
+  infinite;
 }
 
 .card-tilt {
