@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import "./Card.css";
 
 const Card = ({ data }) => {
+	const isPatron = data.section === 4;
+
 	const floatDelay = -((data.id * 1.17) % 3);
 
 	const [isFlipped, setIsFlipped] = useState(false);
@@ -174,7 +176,7 @@ const Card = ({ data }) => {
 				<div
 					className={`card-inner ${
 						isFlipped ? "flipped" : ""
-					}`}
+					} ${isPatron ? "patron-card" : ""}`}
 				>
 
 					{/* ==================== FRONT ==================== */}
@@ -187,33 +189,56 @@ const Card = ({ data }) => {
 							alt={`${data.name} front`}
 						/>
 
-						{/* Front border */}
+						{/* Front border + Patron foil */}
 
-						<img
-							src={data.border}
-							className="card-image card-border"
-							alt=""
-							aria-hidden="true"
-						/>
+{isPatron ? (
+	<div
+		className="patron-name-layer"
+		style={{
+			transform:
+				`translate3d(` +
+				`${currentTilt.y * 0.6}px, ` +
+				`${-currentTilt.x * 0.6}px, ` +
+				`20px)`,
+		}}
+	>
+		<img
+			src={data.border}
+			className="card-image card-border"
+			alt=""
+			aria-hidden="true"
+		/>
 
-						{/* Front foil */}
+		<div
+			className="foil-overlay"
+			style={{
+				"--border-mask": `url(${data.border})`,
+				"--foil-x": `${currentTilt.y * 3}%`,
+				"--foil-y": `${-currentTilt.x * 3}%`,
+				"--foil-angle": `${45 + currentTilt.y * 2}deg`,
+			}}
+		/>
+	</div>
+) : (
+	<>
+		<img
+			src={data.border}
+			className="card-image card-border"
+			alt=""
+			aria-hidden="true"
+		/>
 
-						<div
-							className="foil-overlay"
-							style={{
-								"--border-mask":
-									`url(${data.border})`,
-
-								"--foil-x":
-									`${currentTilt.y * 3}%`,
-
-								"--foil-y":
-									`${-currentTilt.x * 3}%`,
-
-								"--foil-angle":
-									`${45 + currentTilt.y * 2}deg`,
-							}}
-						/>
+		<div
+			className="foil-overlay"
+			style={{
+				"--border-mask": `url(${data.border})`,
+				"--foil-x": `${currentTilt.y * 3}%`,
+				"--foil-y": `${-currentTilt.x * 3}%`,
+				"--foil-angle": `${45 + currentTilt.y * 2}deg`,
+			}}
+		/>
+	</>
+)}
 
 						{/* Front sheen */}
 
@@ -240,32 +265,61 @@ const Card = ({ data }) => {
 							alt={`${data.name} back`}
 						/>
 
-						{/* Back border with CSS shadow */}
+{/* Back border + Patron foil */}
 
-						<img
-							src={data.borderBack}
-							className="card-image card-border card-border-back"
-							alt=""
-							aria-hidden="true"
-						/>
+{isPatron ? (
+	<div className="patron-back-border-layer">
+		<img
+			src={data.borderBack}
+			className="card-image card-border card-border-back"
+			alt=""
+			aria-hidden="true"
+		/>
 
-						{/* Back foil */}
+		<div
+			className="foil-overlay"
+			style={{
+				"--border-mask":
+					`url(${data.borderBack})`,
 
-						<div
-							className="foil-overlay"
-							style={{
-								"--border-mask":
-									`url(${data.borderBack})`,
+				"--foil-x":
+					`${currentTilt.y * 3}%`,
 
-								"--foil-x":
-									`${currentTilt.y * 3}%`,
+				"--foil-y":
+					`${-currentTilt.x * 3}%`,
 
-								"--foil-y":
-									`${-currentTilt.x * 3}%`,
+				"--foil-angle":
+					`${45 + currentTilt.y * 2}deg`,
+			}}
+		/>
+	</div>
+) : (
+	<>
+		<img
+			src={data.borderBack}
+			className="card-image card-border card-border-back"
+			alt=""
+			aria-hidden="true"
+		/>
 
-								"--foil-angle":
-									`${45 + currentTilt.y * 2}deg`,
-							}}
+		<div
+			className="foil-overlay"
+			style={{
+				"--border-mask":
+					`url(${data.borderBack})`,
+
+				"--foil-x":
+					`${currentTilt.y * 3}%`,
+
+				"--foil-y":
+					`${-currentTilt.x * 3}%`,
+
+				"--foil-angle":
+					`${45 + currentTilt.y * 2}deg`,
+			}}
+		/>
+	</>
+)}
 						/>
 
 						{/* Back sheen */}

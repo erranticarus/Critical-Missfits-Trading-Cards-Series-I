@@ -182,9 +182,9 @@ const Atmosphere = () => {
   );
 };
 
-const GalleryBanner = ({ src, alt = "" }) => {
+const GalleryBanner = ({ src, alt = "", className = "" }) => {
   return (
-    <div className="gallery-banner">
+    <div className={`gallery-banner ${className}`}>
       <img
         src={src}
         className="gallery-banner-image"
@@ -203,7 +203,7 @@ const GalleryBanner = ({ src, alt = "" }) => {
 };
 
 function App() {
-  const sections = [1, 2, 3];
+  const sections = [1, 2, 3, 4, 5];
 
   return (
     <div className="app">
@@ -243,11 +243,12 @@ function App() {
             className={`gallery-section section-${section}`}
             key={section}
           >
-            <GalleryBanner
-              src={`./assets/banner_${String.fromCharCode(
-                96 + section
-              )}.png`}
-            />
+<GalleryBanner
+  src={`./assets/banner_${String.fromCharCode(
+    96 + section
+  )}.png`}
+  className={section === 5 ? "gallery-banner-section-5" : ""}
+/>
 
             <div className="app-container">
               {sectionCards.map((card) => (
