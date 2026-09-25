@@ -164,6 +164,12 @@ const Card = ({ data }) => {
 	/* ==================== CARD VISUAL ==================== */
 
 	const renderCard = (currentTilt) => {
+    const prismAngle =
+      Math.atan2(
+        currentTilt.x,
+        currentTilt.y
+      ) * (180 / Math.PI);
+
 		return (
 			<div
 				className="card-tilt"
@@ -184,10 +190,37 @@ const Card = ({ data }) => {
 					<div className="card-front">
 
 						<img
-							src={data.front}
-							className="card-image card-base"
-							alt={`${data.name} front`}
-						/>
+  src={data.front}
+  className="card-image card-base"
+  alt={`${data.name} front`}
+  style={
+    isPatron
+      ? {
+transform:
+  `translate3d(` +
+  `${-currentTilt.y * 0.9}px, ` +
+  `${currentTilt.x * 0.9}px, ` +
+  `0px) ` +
+  `scale(1.11)`,
+        }
+      : undefined
+  }
+/>
+
+{/* Patron depth plane */}
+{isPatron && (
+  <div
+    className="patron-depth-plane"
+    style={{
+      transform:
+        `translate3d(` +
+        `${-currentTilt.y * 0.15}px, ` +
+        `${currentTilt.x * 0.15}px, ` +
+        `-6px)`,
+    }}
+  />
+)}
+
 
 						{/* Front border + Patron foil */}
 
@@ -197,8 +230,8 @@ const Card = ({ data }) => {
 		style={{
 			transform:
 				`translate3d(` +
-				`${currentTilt.y * 0.6}px, ` +
-				`${-currentTilt.x * 0.6}px, ` +
+				`${currentTilt.y * 0.1}px, ` +
+				`${-currentTilt.x * 0.1}px, ` +
 				`20px)`,
 		}}
 	>
@@ -252,6 +285,76 @@ const Card = ({ data }) => {
 									`${-currentTilt.x * 3}%`,
 							}}
 						/>
+{/* Patron prismatic reflection */}
+
+{isPatron && (
+  <div className="patron-idle-prism" />
+)}
+
+{isPatron && (
+	<div
+		className="patron-prismatic"
+		style={{
+			"--prism-x": `${currentTilt.y}%`,
+			"--prism-y": `${-currentTilt.x}%`,
+  			"--prism-angle": `${prismAngle}deg`,
+
+			"--prism-strength":
+				`${Math.min(
+					Math.max(
+						Math.abs(currentTilt.x) +
+							Math.abs(currentTilt.y) -
+							20,
+						0
+					) / 20,
+					1
+				)}`,
+		}}
+	/>
+)}
+
+{/* Patron specular highlight */}
+{isPatron && (
+  <div
+    className="patron-specular"
+    style={{
+      "--specular-x": `${50 - currentTilt.y * 1.5}%`,
+	"--specular-y": `${50 + currentTilt.x * 1.5}%`,
+      "--specular-strength":
+        `${Math.min(
+          Math.max(
+            Math.abs(currentTilt.x) +
+              Math.abs(currentTilt.y) -
+              8,
+            0
+          ) / 32,
+          1
+        )}`,
+    }}
+  />
+)}
+
+{/* Patron color spill */}
+{isPatron && (
+  <div
+    className="patron-color-spill"
+    style={{
+      "--spill-x": `${currentTilt.y}%`,
+      "--spill-y": `${-currentTilt.x}%`,
+      "--spill-strength":
+        `${Math.min(
+          Math.max(
+            Math.abs(currentTilt.x) +
+              Math.abs(currentTilt.y) -
+              6,
+            0
+          ) / 28,
+          1
+        )}`,
+      "--spill-angle": `${prismAngle}deg`,
+    }}
+  />
+)}
 
 					</div>
 
