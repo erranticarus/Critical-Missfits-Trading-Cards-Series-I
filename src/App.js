@@ -183,6 +183,12 @@ const Atmosphere = () => {
 };
 
 const GalleryBanner = ({ src, alt = "", className = "" }) => {
+
+const assetUrl = (path) =>
+  path.startsWith("./")
+    ? `${import.meta.env.BASE_URL}${path.slice(2)}`
+    : path;
+
   return (
     <div className={`gallery-banner ${className}`}>
       <img
@@ -194,7 +200,7 @@ const GalleryBanner = ({ src, alt = "", className = "" }) => {
       <div
         className="gallery-banner-shine"
         style={{
-          "--banner-mask": `url(${src})`,
+          "--banner-mask": `url(${assetUrl(src)})`,
         }}
         aria-hidden="true"
       />
