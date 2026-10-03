@@ -1,0 +1,913 @@
+/** @format */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* ==================== GLOBAL STYLES ==================== */
+
+body {
+  position: relative;
+
+  background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.45),
+      rgba(0, 0, 0, 0.45)
+    ),
+    url("./assets/bg.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+
+  font-family: Georgia, "Times New Roman", serif;
+  color: white;
+
+  min-height: 100vh;
+  padding: 20px;
+}
+
+
+/* ==================== BACKGROUND ATMOSPHERE ==================== */
+
+.atmosphere {
+  position: fixed;
+  inset: 0;
+
+  z-index: 0;
+
+  pointer-events: none;
+  overflow: hidden;
+}
+
+
+* ==================== SMOKE ==================== */
+
+.smoke-layer {
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+}
+
+.smoke-wisp {
+  position: absolute;
+
+  width: 63vw;
+  height: 36vw;
+
+  border-radius: 50%;
+
+  filter: blur(55px);
+
+  opacity: 0.52;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(185, 185, 185, 0.58) 0%,
+      rgba(135, 135, 135, 0.38) 32%,
+      rgba(95, 95, 95, 0.20) 55%,
+      transparent 75%
+    );
+
+  animation:
+    smokeRise
+    var(--duration)
+    ease-in-out
+    var(--delay)
+    infinite;
+}
+
+.smoke-wisp-1 {
+  left: -18%;
+  bottom: -25%;
+
+  opacity: 0.46;
+
+  --x1: 5vw;
+  --x2: 12vw;
+  --x3: 4vw;
+
+  --scale1: 1.05;
+  --scale2: 1.18;
+  --scale3: 0.92;
+}
+
+.smoke-wisp-2 {
+  left: 5%;
+  bottom: -32%;
+
+  width: 54vw;
+  height: 42vw;
+
+  opacity: 0.40;
+
+  --x1: -4vw;
+  --x2: 7vw;
+  --x3: 13vw;
+
+  --scale1: 0.92;
+  --scale2: 1.12;
+  --scale3: 1.25;
+}
+
+.smoke-wisp-3 {
+  left: 30%;
+  bottom: -26%;
+
+  width: 68vw;
+  height: 39vw;
+
+  opacity: 0.48;
+
+  --x1: 7vw;
+  --x2: -5vw;
+  --x3: 8vw;
+
+  --scale1: 1.12;
+  --scale2: 0.94;
+  --scale3: 1.18;
+}
+
+.smoke-wisp-4 {
+  right: -16%;
+  bottom: -35%;
+
+  width: 60vw;
+  height: 38vw;
+
+  opacity: 0.38;
+
+  --x1: -7vw;
+  --x2: -14vw;
+  --x3: -5vw;
+
+  --scale1: 0.96;
+  --scale2: 1.2;
+  --scale3: 1.05;
+}
+
+.smoke-wisp-5 {
+  left: 55%;
+  bottom: -44%;
+
+  width: 48vw;
+  height: 45vw;
+
+  opacity: 0.42;
+
+  --x1: -5vw;
+  --x2: 8vw;
+  --x3: 2vw;
+
+  --scale1: 1.08;
+  --scale2: 0.9;
+  --scale3: 1.2;
+}
+
+.smoke-wisp-6 {
+  left: 14%;
+  bottom: -50%;
+
+  width: 57vw;
+  height: 41vw;
+
+  opacity: 0.34;
+
+  --x1: 9vw;
+  --x2: 2vw;
+  --x3: -7vw;
+
+  --scale1: 0.94;
+  --scale2: 1.16;
+  --scale3: 1.08;
+}
+
+@keyframes smokeRise {
+  0% {
+    transform:
+      translate3d(0, 18vh, 0)
+      scale(0.75);
+
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 0.125;
+  }
+
+  25% {
+    transform:
+      translate3d(
+        var(--x1),
+        4vh,
+        0
+      )
+      scale(var(--scale1));
+
+    opacity: 0.18;
+  }
+
+  40% {
+    transform:
+      translate3d(
+        var(--x2),
+        -16vh,
+        0
+      )
+      scale(var(--scale2));
+
+    opacity: 0.16;
+  }
+
+  55% {
+    transform:
+      translate3d(
+        var(--x3),
+        -35vh,
+        0
+      )
+      scale(var(--scale3));
+
+    opacity: 0.135;
+  }
+
+  70% {
+    transform:
+      translate3d(
+        calc(var(--x1) * -0.5),
+        -55vh,
+        0
+      )
+      scale(1.22);
+
+    opacity: 0.0975;
+  }
+
+  84% {
+    transform:
+      translate3d(
+        calc(var(--x2) * 0.5),
+        -75vh,
+        0
+      )
+      scale(1.35);
+
+    opacity: 0.045;
+  }
+
+  100% {
+    transform:
+      translate3d(
+        calc(var(--x3) * -0.4),
+        -105vh,
+        0
+      )
+      scale(1.5);
+
+    opacity: 0;
+  }
+}
+
+/* ==================== EMBERS ==================== */
+
+.ember-layer {
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+}
+
+/* ==================== EMBERS ==================== */
+
+.ember {
+  position: absolute;
+
+  width: var(--size);
+  height: var(--size);
+
+  display: block;
+
+  border-radius: 50%;
+
+  z-index: 2;
+
+  background: #ff4a00;
+
+  opacity: 1;
+
+  box-shadow:
+    0 0 3px #ffffff,
+    0 0 7px #ffe000,
+    0 0 12px #ff9a00,
+    0 0 18px #ff6500,
+    0 0 28px #ff3d00,
+    0 0 42px rgba(255, 50, 0, 1);
+
+filter:
+  brightness(1.7)
+  saturate(1.9)
+  drop-shadow(0 0 9px #ff6500)
+  drop-shadow(0 0 18px #ff3d00);
+
+  animation:
+    emberRise
+    var(--duration)
+    linear
+    var(--delay)
+    infinite,
+    emberFlicker
+    1.7s
+    ease-in-out
+    var(--delay)
+    infinite
+    alternate;
+}
+
+.ember::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 3.5px;
+  height: 3.5px;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background: #ff7a00;
+
+  box-shadow:
+    0 0 2px #ffd080,
+    0 0 5px #ff9a00,
+    0 0 8px #ff7200,
+    0 0 12px #ff5200,
+    0 0 18px #ff3500,
+    0 0 27px #ff1f00,
+    0 0 38px rgba(255, 45, 0, 0.8);
+
+  opacity: 1;
+
+  pointer-events: none;
+}
+
+/* ==================== EMBER MOVEMENT ==================== */
+
+@keyframes emberRise {
+  0% {
+    transform:
+      translate3d(0, 10vh, 0)
+      scale(0.6);
+
+    opacity: 0;
+  }
+
+  8% {
+    opacity: 0.9;
+  }
+
+  18% {
+    transform:
+      translate3d(
+        calc(var(--drift) * 0.18),
+        -5vh,
+        0
+      )
+      scale(0.9);
+  }
+
+  31% {
+    transform:
+      translate3d(
+        calc(var(--drift) * -0.08),
+        -17vh,
+        0
+      )
+      scale(1.05);
+  }
+
+  44% {
+    transform:
+      translate3d(
+        calc(var(--drift) * 0.32),
+        -31vh,
+        0
+      )
+      scale(0.8);
+  }
+
+  57% {
+    transform:
+      translate3d(
+        calc(var(--drift) * 0.12),
+        -45vh,
+        0
+      )
+      scale(1);
+  }
+
+  69% {
+    transform:
+      translate3d(
+        calc(var(--drift) * 0.48),
+        -59vh,
+        0
+      )
+      scale(0.75);
+  }
+
+  81% {
+    transform:
+      translate3d(
+        calc(var(--drift) * 0.27),
+        -74vh,
+        0
+      )
+      scale(1.05);
+  }
+
+  91% {
+    transform:
+      translate3d(
+        calc(var(--drift) * 0.62),
+        -89vh,
+        0
+      )
+      scale(0.7);
+
+    opacity: 0.35;
+  }
+
+  100% {
+    transform:
+      translate3d(
+        var(--drift),
+        -108vh,
+        0
+      )
+      scale(0.45);
+
+    opacity: 0;
+  }
+}
+
+
+/* ==================== EMBER FLICKER ==================== */
+
+@keyframes emberFlicker {
+  0% {
+    filter:
+      brightness(1)
+      saturate(1.4)
+      hue-rotate(-7deg);
+  }
+
+  9% {
+    filter:
+      brightness(1.65)
+      saturate(1.9)
+      hue-rotate(-13deg);
+  }
+
+  17% {
+    filter:
+      brightness(1.15)
+      saturate(1.5)
+      hue-rotate(-8deg);
+  }
+
+  29% {
+    filter:
+      brightness(2.1)
+      saturate(2.2)
+      hue-rotate(-17deg);
+  }
+
+  36% {
+    filter:
+      brightness(1.3)
+      saturate(1.7)
+      hue-rotate(-10deg);
+  }
+
+  48% {
+    filter:
+      brightness(1.8)
+      saturate(2.0)
+      hue-rotate(-15deg);
+  }
+
+  53% {
+    filter:
+      brightness(2.45)
+      saturate(2.4)
+      hue-rotate(-21deg);
+  }
+
+  61% {
+    filter:
+      brightness(1.1)
+      saturate(1.5)
+      hue-rotate(-7deg);
+  }
+
+  72% {
+    filter:
+      brightness(1.9)
+      saturate(2.1)
+      hue-rotate(-17deg);
+  }
+
+  79% {
+    filter:
+      brightness(1.25)
+      saturate(1.6)
+      hue-rotate(-9deg);
+  }
+
+  91% {
+    filter:
+      brightness(2.2)
+      saturate(2.3)
+      hue-rotate(-20deg);
+  }
+
+  100% {
+    filter:
+      brightness(1.35)
+      saturate(1.8)
+      hue-rotate(-12deg);
+  }
+}
+
+/* ==================== HEADER ==================== */
+
+.app-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.gallery-banner {
+  position: relative;
+
+  width: min(1200px, 90vw);
+
+  margin: 0 auto;
+}
+
+.gallery-banner-section-5 {
+  width: min(583px, 90vw);
+}
+
+.gallery-banner-image {
+  width: 100%;
+  height: auto;
+
+  display: block;
+
+  filter:
+    drop-shadow(
+      0 6px 8px
+      rgba(0, 0, 0, 0.8)
+    );
+}
+
+.gallery-banner-shine {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      105deg,
+      transparent 0%,
+      transparent 45%,
+      rgba(255, 255, 255, 0.10) 47%,
+      rgba(255, 255, 255, 0.65) 49%,
+      rgba(255, 255, 255, 1) 50%,
+      rgba(255, 255, 255, 0.65) 51%,
+      rgba(255, 255, 255, 0.10) 53%,
+      transparent 55%,
+      transparent 100%
+    );
+
+  background-size: 250% 100%;
+  background-position: 150% 0;
+
+  mix-blend-mode: color-dodge;
+
+  -webkit-mask-image: var(--banner-mask);
+  mask-image: var(--banner-mask);
+
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+
+  -webkit-mask-position: center;
+  mask-position: center;
+
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+
+  animation:
+    bannerShine
+    7s
+    ease-in-out
+    infinite;
+}
+
+@keyframes bannerShine {
+  0%,
+  45% {
+    background-position: 150% 0;
+  }
+
+  75% {
+    background-position: -50% 0;
+  }
+
+  100% {
+    background-position: -50% 0;
+  }
+}
+
+
+/* ==================== INSTRUCTIONS ==================== */
+
+.app-header .card-instructions {
+  color: #777;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 1.1rem;
+
+  font-weight: normal;
+
+  letter-spacing: 1.2px;
+
+  line-height: 1.6;
+
+  margin: 1rem auto 0;
+
+  max-width: 1100px;
+}
+
+
+/* ==================== GALLERY SECTIONS ==================== */
+
+.gallery-section {
+  width: 100%;
+}
+
+.section-zero {
+  margin-top: 0;
+}
+
+.section-1,
+.section-2,
+.section-3,
+.section-4,
+.section-5 {
+  margin-top: 5rem;
+}
+
+/* Match Section 5 spacing above and below the banner */
+.section-5 .app-container {
+  padding-top: 7rem;
+}
+
+.app-container {
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  justify-content: center;
+  gap: 9rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* ==================== CARD GRID ==================== */
+
+.app-container {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 300px);
+
+  justify-content: center;
+
+  gap: 9rem;
+
+  max-width: 1400px;
+
+  margin: 0 auto;
+
+  padding: 2rem;
+}
+
+
+/* Card 000 centered above the main grid */
+
+.section-zero .app-container > :first-child {
+  grid-column: 1 / 4;
+  justify-self: center;
+}
+
+/* Card 058 spans the full gallery width */
+.section-5 .app-container > .card-container.horizontal-card-container {
+  grid-column: 1 / 4;
+  justify-self: center;
+}
+
+
+/* ==================== TABLET ==================== */
+
+@media (max-width: 1100px) and (min-width: 769px) {
+  .app-container {
+    grid-template-columns:
+      repeat(2, 300px);
+  }
+
+  .section-zero .app-container > :first-child {
+    grid-column: 1 / 3;
+    justify-self: center;
+  }
+}
+
+
+/* ==================== MOBILE ==================== */
+
+@media (max-width: 768px) {
+  .app-container {
+    grid-template-columns: 300px;
+
+    gap: 2rem;
+
+    padding:
+      2rem 1rem;
+  }
+
+  .section-zero .app-container > :first-child {
+    grid-column: 1;
+  }
+
+  .app-header .card-instructions {
+    font-size: 0.85rem;
+
+    letter-spacing: 0.5px;
+
+    padding: 0 10px;
+  }
+}
+
+
+/* ==================== SMALL PHONES ==================== */
+
+@media (max-width: 480px) {
+  .gallery-banner {
+    width: 90vw;
+  }
+
+  .app-header .card-instructions {
+    font-size: 0.8rem;
+  }
+}
+
+
+/* ==================== JUSTIFICATION SECTION ==================== */
+
+.justification-section {
+  color: #fff;
+
+  max-width: 900px;
+
+  margin:
+    6rem auto 2rem;
+
+  padding: 3rem;
+
+  background:
+    linear-gradient(
+      135deg,
+      #1a1a1a 0%,
+      #2d2d2d 100%
+    );
+
+  border-radius: 15px;
+
+  box-shadow:
+    0 10px 40px
+    rgba(0, 0, 0, 0.5);
+
+  border:
+    2px solid #00d4ff;
+}
+
+.justification-section h2 {
+  font-size: 2rem;
+
+  border-bottom:
+    3px solid #00d4ff;
+
+  padding-bottom: 15px;
+
+  margin-bottom: 2rem;
+
+  text-align: center;
+}
+
+.justification-grid {
+  display: grid;
+
+  gap: 2.5rem;
+
+  margin-top: 2rem;
+}
+
+.justification-grid article {
+  background:
+    rgba(0, 0, 0, 0.3);
+
+  padding: 2rem;
+
+  border-radius: 10px;
+
+  border-left:
+    4px solid #00d4ff;
+}
+
+.justification-grid h3 {
+  margin-bottom: 1rem;
+
+  font-size: 1.4rem;
+}
+
+.justification-grid p {
+  line-height: 1.8;
+
+  color: #ddd;
+
+  font-size: 1rem;
+}
+
+.justification-grid em {
+  color: #00d4ff;
+
+  font-style: normal;
+
+  font-weight: bold;
+}
+
+.justification-grid code {
+  background:
+    rgba(0, 0, 0, 0.5);
+
+  padding:
+    2px 6px;
+
+  border-radius: 3px;
+
+  color: #bb86fc;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 0.9em;
+}
+
+/* ==================== GALLERY FOOTER ==================== */
+
+.gallery-footer {
+  width: 100%;
+
+  text-align: center;
+
+  padding:
+    4rem 2rem 2rem;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 0.8rem;
+
+  font-weight: normal;
+
+  letter-spacing: 1px;
+
+  color: #777;
+}
