@@ -3,6 +3,11 @@
 import { useState, useEffect, useRef } from "react";
 import "./Card.css";
 
+const assetUrl = (path) =>
+  path.startsWith("./")
+    ? `${import.meta.env.BASE_URL}${path.slice(2)}`
+    : path;
+
 const Card = ({ data }) => {
 	const isPatron = data.section === 4;
 	const isHorizontal = data.id === 58;
@@ -296,7 +301,7 @@ transform:
 		<div
 			className="foil-overlay"
 			style={{
-				"--border-mask": `url(${data.border})`,
+				"--border-mask": `url(${assetUrl(data.border)})`,
 				"--foil-x": `${currentTilt.y * 3}%`,
 				"--foil-y": `${-currentTilt.x * 3}%`,
 				"--foil-angle": `${45 + currentTilt.y * 2}deg`,
@@ -315,7 +320,7 @@ transform:
 		<div
 			className="foil-overlay"
 			style={{
-				"--border-mask": `url(${data.border})`,
+				"--border-mask": `url(${assetUrl(data.border)})`,
 				"--foil-x": `${currentTilt.y * 3}%`,
 				"--foil-y": `${-currentTilt.x * 3}%`,
 				"--foil-angle": `${45 + currentTilt.y * 2}deg`,
@@ -434,7 +439,7 @@ transform:
 			className="foil-overlay"
 			style={{
 				"--border-mask":
-					`url(${data.borderBack})`,
+					`url(${assetUrl(data.borderBack)})`,
 
 				"--foil-x":
 					`${currentTilt.y * 3}%`,
@@ -460,7 +465,7 @@ transform:
 			className="foil-overlay"
 			style={{
 				"--border-mask":
-					`url(${data.borderBack})`,
+					`url(${assetUrl(data.borderBack)})`,
 
 				"--foil-x":
 					`${currentTilt.y * 3}%`,
