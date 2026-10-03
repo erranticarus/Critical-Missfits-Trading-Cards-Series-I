@@ -17,7 +17,7 @@ body {
       rgba(0, 0, 0, 0.45),
       rgba(0, 0, 0, 0.45)
     ),
-    url("./assets/bg.jpg");
+    url("/assets/bg.jpg");
 
   background-size: cover;
   background-position: center;
@@ -45,7 +45,7 @@ body {
 }
 
 
-* ==================== SMOKE ==================== */
+/* ==================== SMOKE ==================== */
 
 .smoke-layer {
   position: absolute;

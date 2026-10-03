@@ -474,7 +474,6 @@ transform:
 		/>
 	</>
 )}
-						/>
 
 						{/* Back sheen */}
 
