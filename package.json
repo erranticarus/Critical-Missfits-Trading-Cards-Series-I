@@ -1,8 +1,8 @@
 {
   "name": "mavscript-universe",
   "version": "1.0.0",
-  "description": "MavScript Coding Companions - Legendary Trading Card Collection",
-  "homepage": "https://mavscriptblu.github.io/trading-cards-react",
+  "description": "Critical Missfits Trading Card Collection - Series I",
+  "homepage": "https://erranticarus.github.io/Critical-Missfits-Trading-Cards-Series-I",
   "private": true,
   "type": "module",
   "dependencies": {
