@@ -38,11 +38,21 @@ const Card = ({ data }) => {
 	const calculateTilt = (e, setTiltState) => {
 		const rect = e.currentTarget.getBoundingClientRect();
 
-		const xPercent =
-			(e.clientX - rect.left) / rect.width;
+		const xPercent = Math.max(
+	0,
+	Math.min(
+		1,
+		(e.clientX - rect.left) / rect.width
+	)
+);
 
-		const yPercent =
-			(e.clientY - rect.top) / rect.height;
+const yPercent = Math.max(
+	0,
+	Math.min(
+		1,
+		(e.clientY - rect.top) / rect.height
+	)
+);
 
 		const maxTilt = 20;
 
@@ -58,17 +68,17 @@ const Card = ({ data }) => {
 		});
 	};
 
-	const handleMouseMove = (e) => {
-		calculateTilt(e, setTilt);
-	};
+const handlePointerMove = (e) => {
+	calculateTilt(e, setTilt);
+};
 
-	const handleZoomMouseMove = (e) => {
-		calculateTilt(e, setZoomTilt);
-	};
+const handleZoomPointerMove = (e) => {
+	calculateTilt(e, setZoomTilt);
+};
 
-	const handleMouseLeave = () => {
-		setTilt({ x: 0, y: 0 });
-	};
+const handleMouseLeave = () => {
+	setTilt({ x: 0, y: 0 });
+};
 
 const handleMouseEnter = () => {
   if (videoRef.current && data.video) {
@@ -222,7 +232,7 @@ const maxHeight = isHorizontal
 					<div className="card-front">
 
 						<img
-  src={data.front}
+  src={assetUrl(data.front)}
   className="card-image card-base"
   alt={`${data.name} front`}
   style={
@@ -233,7 +243,7 @@ transform:
   `${-currentTilt.y * 0.9}px, ` +
   `${currentTilt.x * 0.9}px, ` +
   `0px) ` +
-  `scale(1.11)`,
+  `scale(${window.innerWidth <= 480 ? 1.18 : 1.11})`,
         }
       : undefined
   }
@@ -242,7 +252,7 @@ transform:
   {data.video && (
     <video
   	ref={videoRef}
-      src={data.video}
+      src={assetUrl(data.video)}
       className="card-image card-base card-video"
       muted
       loop
@@ -292,7 +302,7 @@ transform:
 		}}
 	>
 		<img
-			src={data.border}
+			src={assetUrl(data.border)}
 			className="card-image card-border"
 			alt=""
 			aria-hidden="true"
@@ -311,7 +321,7 @@ transform:
 ) : (
 	<>
 		<img
-			src={data.border}
+			src={assetUrl(data.border)}
 			className="card-image card-border"
 			alt=""
 			aria-hidden="true"
@@ -419,7 +429,7 @@ transform:
 					<div className="card-back">
 
 						<img
-							src={data.back}
+							src={assetUrl(data.back)}
 							className="card-image card-base"
 							alt={`${data.name} back`}
 						/>
@@ -429,7 +439,7 @@ transform:
 {isPatron ? (
 	<div className="patron-back-border-layer">
 		<img
-			src={data.borderBack}
+			src={assetUrl(data.borderBack)}
 			className="card-image card-border card-border-back"
 			alt=""
 			aria-hidden="true"
@@ -455,7 +465,7 @@ transform:
 ) : (
 	<>
 		<img
-			src={data.borderBack}
+			src={assetUrl(data.borderBack)}
 			className="card-image card-border card-border-back"
 			alt=""
 			aria-hidden="true"
@@ -535,9 +545,9 @@ transform:
     style={{
 		"--float-delay": `${floatDelay}s`,
 	}}
-	onMouseMove={handleMouseMove}
-onMouseEnter={handleMouseEnter}
-onMouseLeave={() => {
+onPointerMove={handlePointerMove}
+onPointerEnter={handleMouseEnter}
+onPointerLeave={() => {
   handleMouseLeave();
   handleVideoMouseLeave();
 }}
@@ -564,8 +574,8 @@ onMouseLeave={() => {
 							isClosing ? "closing" : ""
 						}`}
 						style={getZoomStyle()}
-						onMouseMove={handleZoomMouseMove}
-						onMouseLeave={handleZoomMouseLeave}
+						onPointerMove={handleZoomPointerMove}
+						onPointerLeave={handleZoomMouseLeave}
 						onClick={handleClick}
 						onDoubleClick={(e) =>
 							e.stopPropagation()

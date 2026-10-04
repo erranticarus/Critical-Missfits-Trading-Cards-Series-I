@@ -192,7 +192,7 @@ const assetUrl = (path) =>
   return (
     <div className={`gallery-banner ${className}`}>
       <img
-        src={src}
+        src={assetUrl(src)}
         className="gallery-banner-image"
         alt={alt}
       />
@@ -222,10 +222,10 @@ function App() {
         />
 
         <p className="card-instructions">
-          Press F11 to toggle full-screen mode • Scroll down to explore the cards
+          Press F11 to toggle full-screen mode (PC) • Scroll down to explore the cards
           <br />
-          Single-click a card to flip it over • Double-click to zoom in •
-          Click anywhere outside the card to zoom back out
+          Single-click/tap a card to flip it over • Double-click/tap to zoom in •
+          Click/tap anywhere outside the card to zoom back out
         </p>
       </header>
 

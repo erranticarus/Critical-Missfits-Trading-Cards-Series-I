@@ -6,6 +6,8 @@
 	perspective: 1200px;
 	margin: 0 auto;
 	cursor: pointer;
+	touch-action: none;
+	-webkit-tap-highlight-color: transparent;
 
 animation:
   float
@@ -265,6 +267,13 @@ animation:
 	opacity: 1;
 }
 
+@media (hover: none) {
+	.card-container .foil-overlay,
+	.zoom-card .foil-overlay {
+		opacity: 1;
+	}
+}
+
 /* ==================== SUBTLE CARD FACE SHEEN ==================== */
 
 .face-sheen {
@@ -340,6 +349,7 @@ animation:
 
 .zoom-backdrop.closing {
 	opacity: 0;
+    pointer-events: none;
 }
 
 /* ==================== ZOOM CARD ==================== */
@@ -354,6 +364,7 @@ animation:
 	perspective: 1200px;
 
 	cursor: pointer;
+	touch-action: none;
 
 	pointer-events: auto;
 
@@ -369,6 +380,7 @@ animation:
 
 .zoom-card.closing {
 	opacity: 0;
+    pointer-events: none;
 }
 
 /* ==================== HORIZONTAL CARD 058 ==================== */
@@ -390,8 +402,15 @@ animation:
 
 @media (max-width: 480px) {
 	.card-container {
-		width: 240px;
-		height: 336px;
+		width: min(240px, 64vw);
+		height: auto;
+		aspect-ratio: 5 / 7;
+	}
+
+	.card-container.horizontal-card-container {
+		width: min(720px, 90vw);
+		height: auto;
+		aspect-ratio: 8 / 5;
 	}
 }
 
@@ -629,4 +648,18 @@ background:
   transition:
     background-position 0.12s ease-out,
     opacity 0.12s ease-out;
+}
+
+@media (max-width: 480px) {
+  .zoom-card .patron-idle-prism,
+  .zoom-card .patron-prismatic,
+  .zoom-card .patron-specular,
+  .zoom-card .patron-color-spill {
+    display: none !important;
+  }
+
+  .zoom-card .card-inner.patron-card .card-front,
+  .zoom-card .card-inner.patron-card .card-back {
+    animation: none !important;
+  }
 }
