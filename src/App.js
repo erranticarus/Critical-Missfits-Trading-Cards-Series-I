@@ -222,10 +222,16 @@ function App() {
         />
 
         <p className="card-instructions">
-          Press F11 to toggle full-screen mode (PC) • Scroll down to explore the cards
+	  PC:
+	  <br />
+          Press F11 to toggle full-screen mode
+	  <br />
+          Single-click a card to flip it over • Double-click to zoom in • Click anywhere outside the card to zoom back out
           <br />
-          Single-click/tap a card to flip it over • Double-click/tap to zoom in •
-          Click/tap anywhere outside the card to zoom back out
+	  <br />
+          MOBILE:
+	  <br />
+          Tap a card to flip it over • Use pinch-to-zoom to zoom in and out
         </p>
       </header>
 

@@ -13,7 +13,7 @@
 	perspective: 1200px;
 	margin: 0 auto;
 	cursor: pointer;
-	touch-action: none;
+	touch-action: pinch-zoom;
 
 animation:
   float
@@ -370,7 +370,7 @@ animation:
 	perspective: 1200px;
 
 	cursor: pointer;
-	touch-action: none;
+	touch-action: pinch-zoom;
 
 	pointer-events: auto;
 
@@ -656,16 +656,3 @@ background:
     opacity 0.12s ease-out;
 }
 
-@media (max-width: 480px) {
-  .zoom-card .patron-idle-prism,
-  .zoom-card .patron-prismatic,
-  .zoom-card .patron-specular,
-  .zoom-card .patron-color-spill {
-    display: none !important;
-  }
-
-  .zoom-card .card-inner.patron-card .card-front,
-  .zoom-card .card-inner.patron-card .card-back {
-    animation: none !important;
-  }
-}

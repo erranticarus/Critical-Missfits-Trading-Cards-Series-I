@@ -26,6 +26,7 @@ const Card = ({ data }) => {
 	const [zoomRect, setZoomRect] = useState(null);
 
 	const videoRef = useRef(null);
+	const lastPointerType = useRef(null);
 
 	/* ==================== FLIP ==================== */
 
@@ -100,9 +101,16 @@ const handleVideoMouseLeave = () => {
 	/* ==================== OPEN ZOOM ==================== */
 
 	const handleDoubleClick = (e) => {
-		e.stopPropagation();
+	e.stopPropagation();
 
-		if (isZoomed || isClosing) return;
+	if (
+		lastPointerType.current === "touch" ||
+		lastPointerType.current === "pen"
+	) {
+		return;
+	}
+
+	if (isZoomed || isClosing) return;
 
 		const rect = e.currentTarget.getBoundingClientRect();
 
@@ -545,6 +553,9 @@ transform:
     style={{
 		"--float-delay": `${floatDelay}s`,
 	}}
+    onPointerDown={(e) => {
+      lastPointerType.current = e.pointerType;
+    }}
 onPointerMove={handlePointerMove}
 onPointerEnter={handleMouseEnter}
 onPointerLeave={() => {
