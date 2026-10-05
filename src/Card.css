@@ -1,5 +1,12 @@
 /** @format */
 
+.card-container,
+.zoom-layer,
+.zoom-card,
+.zoom-backdrop {
+	-webkit-tap-highlight-color: transparent;
+}
+
 .card-container {
 	width: 300px;
 	height: 420px;
@@ -7,7 +14,6 @@
 	margin: 0 auto;
 	cursor: pointer;
 	touch-action: none;
-	-webkit-tap-highlight-color: transparent;
 
 animation:
   float
