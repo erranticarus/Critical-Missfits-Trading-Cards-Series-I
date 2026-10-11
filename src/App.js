@@ -272,7 +272,7 @@ function App() {
       })}
 
       <footer className="gallery-footer">
-        ©2026 Critical Missfits | All Rights Reserved | Art by Nova [ChatGPT] | Design by Jasyn | v1.00
+        ©2026 Critical Missfits | All Rights Reserved | Art by Nova [ChatGPT] | Design by Jasyn | v1.01
       </footer>
 
     </div>

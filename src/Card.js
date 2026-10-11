@@ -251,7 +251,15 @@ transform:
   `${-currentTilt.y * 0.9}px, ` +
   `${currentTilt.x * 0.9}px, ` +
   `0px) ` +
-  `scale(${window.innerWidth <= 480 ? 1.18 : 1.11})`,
+  `scale(${
+  window.innerHeight <= 500 &&
+  window.matchMedia("(orientation: landscape)").matches &&
+  window.innerWidth <= 900
+    ? 1.25
+    : window.innerWidth <= 480
+      ? 1.18
+      : 1.11
+})`,
         }
       : undefined
   }

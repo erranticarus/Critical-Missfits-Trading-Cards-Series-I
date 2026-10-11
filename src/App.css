@@ -888,6 +888,27 @@ filter:
   font-size: 0.9em;
 }
 
+/* ==================== LANDSCAPE PHONE GRID ==================== */
+
+@media (max-height: 500px) and (orientation: landscape) and (max-width: 900px) {
+  .app-container {
+    grid-template-columns: repeat(3, 220px);
+    column-gap: 0rem;
+    row-gap: 2rem;
+    padding: 1rem;
+  }
+
+  .section-zero .app-container > :first-child {
+    grid-column: 1 / 4;
+    justify-self: center;
+  }
+
+  .section-5 .app-container > .card-container.horizontal-card-container {
+    grid-column: 1 / 4;
+    justify-self: center;
+  }
+}
+
 /* ==================== GALLERY FOOTER ==================== */
 
 .gallery-footer {
